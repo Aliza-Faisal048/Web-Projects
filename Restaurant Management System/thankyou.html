@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed — DCC Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <input type="checkbox" class="nav-toggle" id="nav-toggle">
+    <nav class="navbar">
+        <div class="logo">🍽 DCC</div>
+        <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </label>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="signup.php">Sign Up</a>
+            <a href="login.php">Login</a>
+            <a href="cart.html" class="btn-cart">🛒 Cart</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <div class="thankyou-wrapper">
+
+            <div class="thankyou-icon">🎉</div>
+
+            <h1>Order Placed!</h1>
+
+            <p>Thank you for ordering from DCC Food! Your meal is being freshly prepared and will be on its way shortly.</p>
+
+            <div class="eta-badge">
+                🚴 Estimated delivery: <strong>25 – 35 minutes</strong>
+            </div>
+
+            <div class="order-details">
+                <h2>Order Summary</h2>
+
+                <div class="order-row">
+                    <span>Cheese Burger × 1</span>
+                    <span>$6.00</span>
+                </div>
+                <div class="order-row">
+                    <span>Italian Pizza × 1</span>
+                    <span>$10.00</span>
+                </div>
+                <div class="order-row">
+                    <span>Creamy Pasta × 1</span>
+                    <span>$8.00</span>
+                </div>
+                <div class="order-row">
+                    <span>Delivery Fee</span>
+                    <span style="color: var(--green-light);">Free</span>
+                </div>
+                <div class="order-row">
+                    <span>Total Paid</span>
+                    <span>$24.00</span>
+                </div>
+            </div>
+
+            <p style="font-size: 14px;">A confirmation has been sent to your email address.</p>
+
+            <div class="thankyou-actions">
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+                <a href="menu.html" class="btn btn-accent">Order Again</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 DCC Food. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </footer>
+
+    <script src="nav.js"></script>
+</body>
+</html>

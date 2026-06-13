@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — DCC Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Mood select matches existing form-card input style */
+        #mood {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            outline: none;
+            color: var(--text-dark);
+            background: #fff;
+            transition: border-color 0.2s;
+            cursor: pointer;
+        }
+        #mood:focus { border-color: var(--green-main); }
+
+        /* Greeting result box */
+        #greeting-box {
+            display: none;
+            margin-top: 20px;
+            padding: 18px 20px;
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 10px;
+            color: var(--green-deep);
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.6;
+            text-align: center;
+        }
+        #greeting-box span {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            color: #555;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <input type="checkbox" class="nav-toggle" id="nav-toggle">
+    <nav class="navbar">
+        <div class="logo">🍽 DCC</div>
+        <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </label>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html" class="active">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="cart.html" class="btn-cart">🛒 Cart</a>
+        </div>
+    </nav>
+
+    <!-- AUTH LAYOUT -->
+    <div class="auth-container">
+
+        <div class="form-card">
+            <h1>Welcome Back!</h1>
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+
+            <!-- Name (new) -->
+            <label for="login-name">Your Name</label>
+            <input type="text" id="login-name" placeholder="Enter your name">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+
+            <div style="text-align: right; margin-top: 8px;">
+                <a href="#" style="color: #2e7d32; font-size: 13px; font-weight: 600;">Forgot password?</a>
+            </div>
+
+            <!-- Mood (new) -->
+            <label for="mood" style="display:block; margin-top: 14px;">How are you feeling right now?</label>
+            <select id="mood">
+                <option value="" disabled selected>Select your mood…</option>
+                <option value="happy">😊 Happy</option>
+                <option value="tired">😴 Tired</option>
+                <option value="busy">💼 Busy</option>
+            </select>
+
+            <button class="btn btn-primary" id="login-btn" style="width:100%; margin-top:16px;">Log In</button>
+
+            <!-- Greeting result shown here -->
+            <div id="greeting-box"></div>
+
+            <div class="divider">OR</div>
+
+            <button class="btn-oauth">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="18" alt="Google">
+                Continue with Google
+            </button>
+            <button class="btn-oauth" style="margin-top: 10px;">
+                🍎 Continue with Apple
+            </button>
+
+            <p class="terms">By logging in, you agree to our Terms of Service and Privacy Policy.</p>
+        </div>
+
+        <div class="auth-images">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80" alt="food">
+            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=400&q=80" alt="burger">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="food spread">
+            <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=400&q=80" alt="pasta">
+            <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=400&q=80" alt="dessert">
+            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=400&q=80" alt="coffee">
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('login-btn').addEventListener('click', function () {
+
+            // 1. Read name
+            var name = document.getElementById('login-name').value.trim();
+
+            // 2. Get current hour
+            var hour = new Date().getHours();
+
+            // 3. Time-based greeting
+            var greeting;
+            if (hour < 12) {
+                greeting = 'Good Morning';
+            } else if (hour < 17) {
+                greeting = 'Good Afternoon';
+            } else if (hour < 20) {
+                greeting = 'Good Evening';
+            } else {
+                greeting = 'Good Night';
+            }
+
+            // 4. Mood selection
+            var mood = document.getElementById('mood').value;
+
+            // Basic check
+            if (!name || !mood) {
+                alert('Please enter your name and select your mood.');
+                return;
+            }
+
+            // 5. Personalized message based on mood
+            var message;
+            if (mood === 'happy') {
+                message = greeting + ', ' + name + '! Glad to see you\'re feeling happy today!';
+            } else if (mood === 'tired') {
+                message = greeting + ', ' + name + '! You seem a bit tired today. Hope you get some rest.';
+            } else if (mood === 'busy') {
+                message = greeting + ', ' + name + '! Stay focused, you\'re doing great!';
+            }
+
+            // Display the message
+            var box = document.getElementById('greeting-box');
+            box.innerHTML = message;
+            box.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>

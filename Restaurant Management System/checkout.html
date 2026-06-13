@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout — DCC Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <input type="checkbox" class="nav-toggle" id="nav-toggle">
+    <nav class="navbar">
+        <div class="logo">🍽 DCC</div>
+        <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </label>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="signup.php">Sign Up</a>
+            <a href="login.php">Login</a>
+            <a href="cart.html" class="btn-cart">🛒 Cart</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+
+        <div class="page-title">
+            <h1>Checkout</h1>
+            <p style="color: var(--text-muted); margin-top: 8px; font-size: 15px;">Almost there! Fill in your details to complete the order.</p>
+        </div>
+
+        <div class="checkout-wrapper">
+
+            <!-- ══ LEFT COLUMN ══ -->
+            <div class="checkout-left">
+
+                <!-- DELIVERY TYPE — radio tabs, no JS -->
+                <div class="checkout-section">
+                    <h2>🚴 Delivery Type</h2>
+
+                    <!-- Hidden radio inputs must be siblings of the panels they control -->
+                    <input type="radio" name="delivery" id="dt-delivery" class="delivery-radio" checked>
+                    <input type="radio" name="delivery" id="dt-pickup"   class="delivery-radio">
+
+                    <div class="delivery-tabs">
+                        <label for="dt-delivery" class="dtab">🏠 Home Delivery</button>
+                        <label for="dt-pickup"   class="dtab">🏪 Pickup</button>
+                    </div>
+
+                    <!-- Delivery address form -->
+                    <div id="delivery-fields">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</button>
+                                <input type="text" placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</button>
+                                <input type="text" placeholder="Smith">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</button>
+                                <input type="tel" placeholder="+1 (555) 000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</button>
+                                <input type="email" placeholder="john@email.com">
+                            </div>
+                            <div class="form-group full">
+                                <label>Street Address</button>
+                                <input type="text" placeholder="123 Main Street, Apt 4B">
+                            </div>
+                            <div class="form-group">
+                                <label>City</button>
+                                <input type="text" placeholder="Food City">
+                            </div>
+                            <div class="form-group">
+                                <label>ZIP / Postal Code</button>
+                                <input type="text" placeholder="45678">
+                            </div>
+                            <div class="form-group full">
+                                <label>Delivery Instructions (optional)</button>
+                                <input type="text" placeholder="e.g. Leave at the door, ring twice...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pickup notice (shown when Pickup tab selected) -->
+                    <div class="pickup-notice" style="padding: 20px; text-align: center; border: 1px dashed var(--border); border-radius: 8px; color: var(--text-muted);">
+                        <div style="font-size: 40px; margin-bottom: 8px;">🏪</div>
+                        <strong style="color: var(--green-light);">Pickup Location</strong><br>
+                        123 DCC Street, Food City, FC 45678<br>
+                        Open Mon – Sun: 8:00 AM – 11:00 PM
+                    </div>
+                </div>
+
+                <!-- PAYMENT METHOD — radio cards, no JS -->
+                <div class="checkout-section">
+                    <h2>💳 Payment Method</h2>
+
+                    <!-- Hidden radio inputs — must precede the panels as siblings -->
+                    <input type="radio" name="payment" id="pm-card"   class="pm-radio" checked>
+                    <input type="radio" name="payment" id="pm-paypal" class="pm-radio">
+                    <input type="radio" name="payment" id="pm-cash"   class="pm-radio">
+                    <input type="radio" name="payment" id="pm-apple"  class="pm-radio">
+
+                    <div class="payment-methods">
+                        <label for="pm-card"   class="pm-label"><span class="pm-icon">💳</span> Credit Card</button>
+                        <label for="pm-paypal" class="pm-label"><span class="pm-icon">🅿️</span> PayPal</button>
+                        <label for="pm-cash"   class="pm-label"><span class="pm-icon">💵</span> Cash on Delivery</button>
+                        <label for="pm-apple"  class="pm-label"><span class="pm-icon">🍎</span> Apple Pay</button>
+                    </div>
+
+                    <!-- Payment panels -->
+                    <div class="pm-panels">
+
+                        <div id="panel-card" class="pm-panel card-fields">
+                            <div class="form-group">
+                                <label>Cardholder Name</button>
+                                <input type="text" placeholder="Name as on card">
+                            </div>
+                            <div class="form-group">
+                                <label>Card Number</button>
+                                <input type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row" style="gap: 16px;">
+                                <div class="form-group">
+                                    <label>Expiry Date</button>
+                                    <input type="text" placeholder="MM / YY" maxlength="7">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV</button>
+                                    <input type="password" placeholder="•••" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="panel-paypal" class="pm-panel" style="text-align: center; padding: 20px; border: 1px dashed var(--border); border-radius: 8px; color: var(--text-muted);">
+                            <div style="font-size: 40px; margin-bottom: 8px;">🅿️</div>
+                            You will be redirected to PayPal to complete your payment securely.
+                        </div>
+
+                        <div id="panel-cash" class="pm-panel" style="text-align: center; padding: 20px; border: 1px dashed var(--border); border-radius: 8px; color: var(--text-muted);">
+                            <div style="font-size: 40px; margin-bottom: 8px;">💵</div>
+                            Pay in cash when your order arrives at your door. Please have the exact amount ready.
+                        </div>
+
+                        <div id="panel-apple" class="pm-panel" style="text-align: center; padding: 20px; border: 1px dashed var(--border); border-radius: 8px; color: var(--text-muted);">
+                            <div style="font-size: 40px; margin-bottom: 8px;">🍎</div>
+                            Complete your payment using Apple Pay on your device.
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ══ RIGHT COLUMN — Order Summary ══ -->
+            <div class="checkout-right">
+                <div class="summary-box">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-item">
+                        <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=200&q=80" alt="Cheese Burger">
+                        <div class="si-name">
+                            Cheese Burger
+                            <span class="si-qty">Qty: 1</span>
+                        </div>
+                        <div class="si-price">$6</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <img src="https://images.unsplash.com/photo-1548365328-9f547fb0953d?auto=format&fit=crop&w=200&q=80" alt="Italian Pizza">
+                        <div class="si-name">
+                            Italian Pizza
+                            <span class="si-qty">Qty: 1</span>
+                        </div>
+                        <div class="si-price">$10</div>
+                    </div>
+
+                    <div class="summary-item">
+                        <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=200&q=80" alt="Creamy Pasta">
+                        <div class="si-name">
+                            Creamy Pasta
+                            <span class="si-qty">Qty: 1</span>
+                        </div>
+                        <div class="si-price">$8</div>
+                    </div>
+
+                    <hr class="summary-divider">
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$24.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span style="color: var(--green-light);">Free</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span>$24.00</span>
+                    </div>
+
+                    <a href="thankyou.html" class="btn btn-primary" style="display: block; text-align: center; margin-top: 20px; font-size: 16px;">
+                        Place Order
+                    </a>
+
+                    <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 14px; line-height: 1.5;">
+                        🔒 Your payment is encrypted and secure. By placing your order you agree to our Terms of Service.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 DCC Food. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </footer>
+
+    <script src="nav.js"></script>
+</body>
+</html>

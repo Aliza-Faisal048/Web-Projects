@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart — DCC Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <input type="checkbox" class="nav-toggle" id="nav-toggle">
+    <nav class="navbar">
+        <div class="logo">🍽 DCC</div>
+        <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </label>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.php">Login</a>
+            <a href="signup.php">Sign Up</a>
+            <a href="cart.html" class="btn-cart active">🛒 Cart</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+            <h1>Your Cart</h1>
+            <p style="color: var(--text-muted); margin-top: 8px; font-size: 15px;">Review your order before checking out.</p>
+        </div>
+
+        <!-- CART ITEMS -->
+        <div class="cart-container">
+
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=200&q=80" alt="Cheese Burger">
+                <div class="item-info">
+                    <h3>Cheese Burger</h3>
+                    <p>Juicy grilled burger with cheddar and secret sauce</p>
+                    <div class="price">$6</div>
+                </div>
+                <div class="quantity">
+                    <button>−</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+                <button class="remove-btn">Remove</button>
+            </div>
+
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1548365328-9f547fb0953d?auto=format&fit=crop&w=200&q=80" alt="Italian Pizza">
+                <div class="item-info">
+                    <h3>Italian Pizza</h3>
+                    <p>Stone-baked with fresh mozzarella and basil</p>
+                    <div class="price">$10</div>
+                </div>
+                <div class="quantity">
+                    <button>−</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+                <button class="remove-btn">Remove</button>
+            </div>
+
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=200&q=80" alt="Creamy Pasta">
+                <div class="item-info">
+                    <h3>Creamy Pasta</h3>
+                    <p>Silky parmesan cream sauce with herbs and garlic</p>
+                    <div class="price">$8</div>
+                </div>
+                <div class="quantity">
+                    <button>−</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+                <button class="remove-btn">Remove</button>
+            </div>
+
+            <!-- ORDER SUMMARY -->
+            <div class="total-section">
+                <p style="color: var(--text-muted); font-size: 14px;">Subtotal: $24 &nbsp;|&nbsp; Delivery: <span style="color: var(--green-light);">Free</span></p>
+                <h2>Total: $24</h2>
+                <a href="checkout.html" class="btn btn-accent" style="display: inline-block; margin-top: 8px;">Proceed to Checkout</a>
+                &nbsp;
+                <a href="menu.html" class="btn btn-accent" style="display: inline-block; margin-top: 8px;">Add More Items</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 DCC Food. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </footer>
+
+    <script src="nav.js"></script>
+</body>
+</html>

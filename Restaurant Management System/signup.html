@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up — DCC Food</title>
+
+    <!-- Fonts & site stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jQuery UI stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <input type="checkbox" class="nav-toggle" id="nav-toggle">
+    <nav class="navbar">
+        <div class="logo">🍽 DCC</div>
+        <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">
+        </label>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.php">Login</a>
+            <a href="signup.php" class="active">Sign Up</a>
+            <a href="cart.html" class="btn-cart">🛒 Cart</a>
+        </div>
+    </nav>
+
+    <!-- AUTH LAYOUT -->
+    <div class="auth-container">
+
+        <div class="form-card">
+
+            <h1>Good Morning!</h1>
+            <p>Already have an account? <a href="login.html">Sign in here</a></p>
+
+            <!-- Full Name -->
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+            <span class="msg-error" id="err-name">⚠ Name must contain only alphabets and spaces.</span>
+
+            <!-- Email -->
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <span class="msg-error" id="err-email">⚠ Please enter a valid email address.</span>
+
+            <!-- Password -->
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Create a password">
+            <span class="msg-error" id="err-password">⚠ Password must be at least 6 characters.</span>
+
+            <!-- Confirm Password -->
+            <label for="confirm">Confirm Password</label>
+            <input type="password" id="confirm" placeholder="Repeat your password">
+            <span class="msg-error" id="err-confirm">⚠ Passwords do not match.</span>
+
+            <button id="btn-create" class="btn btn-primary" style="width:100%; margin-top:16px;">
+                Create Account
+            </button>
+
+            <div class="divider">OR</div>
+
+            <button class="btn-oauth">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="18" alt="Google">
+                Continue with Google
+            </button>
+            <button class="btn-oauth" style="margin-top: 10px;">
+                🍎 Continue with Apple
+            </button>
+
+            <p class="terms">By signing up, you agree to our Terms of Service and Privacy Policy.</p>
+
+        </div>
+
+        <!-- ── Image Slider (play/pause buttons) ── -->
+        <div class="slider">
+            <img id="sliderImage" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Food">
+            <div class="slider-controls">
+                <button onclick="playSlider()">▶ Play</button>
+                <button onclick="pauseSlider()">⏸ Pause</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Hidden jQuery UI Dialog -->
+    <div id="success-dialog" title="🍽 DCC Food">
+        <span class="dialog-icon">🎉</span>
+        <p class="dialog-heading">Account Created!</p>
+        <p class="dialog-body">Thank you! You have entered the correct information.</p>
+    </div>
+
+    <!-- ── Scripts ── -->
+
+    <!-- jQuery core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- jQuery UI (dialog, draggable, resizable) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
+    <script>
+    /* ════════════════════════════════════════
+       IMAGE SLIDER (vanilla JS — play/pause)
+       ════════════════════════════════════════ */
+
+    var sliderImages = [
+        'https://images.unsplash.com/photo-1600891964599-f61ba0e24092',
+        'https://images.unsplash.com/photo-1550547660-d9450f859349',
+        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe',
+        'https://images.unsplash.com/photo-1525755662778-989d0524087e'
+    ];
+
+    var sliderIndex = 0;
+    var sliderInterval;
+
+    function startSlider() {
+        sliderInterval = setInterval(function () {
+            sliderIndex++;
+            if (sliderIndex >= sliderImages.length) {
+                sliderIndex = 0;
+            }
+            document.getElementById('sliderImage').src = sliderImages[sliderIndex];
+        }, 2000);
+    }
+
+    function playSlider() {
+        clearInterval(sliderInterval);
+        startSlider();
+    }
+
+    function pauseSlider() {
+        clearInterval(sliderInterval);
+    }
+
+    // Auto-start slider
+    startSlider();
+
+ /* ════════════════════════════════════════
+       FORM VALIDATION & JQUERY UI DIALOG
+       ════════════════════════════════════════ */
+ 
+    $(function () {
+ 
+        /* ── Helper functions for error display ── */
+ 
+        function showError(inputId, spanId) {
+            $('#' + inputId).addClass('input-invalid').removeClass('input-valid');
+            $('#' + spanId).fadeIn(250);
+        }
+ 
+        function hideError(inputId, spanId) {
+            $('#' + inputId).removeClass('input-invalid').addClass('input-valid');
+            $('#' + spanId).fadeOut(200);
+        }
+ 
+        /* ── Live validation: clear errors as user types ── */
+ 
+        $('#name').on('input', function () {
+            var namePattern = /^[a-zA-Z\s]*$/;
+            var value = $(this).val().trim();
+            
+            // If not empty and contains only alphabets, hide error
+            if (value !== '' && namePattern.test(value)) {
+                hideError('name', 'err-name');
+            } else if (value !== '' && !namePattern.test(value)) {
+                // If contains non-alphabetic characters, show error
+                showError('name', 'err-name');
+            }
+        });
+ 
+        $('#email').on('input', function () {
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailPattern.test($(this).val().trim())) {
+                hideError('email', 'err-email');
+            }
+        });
+ 
+        $('#password').on('input', function () {
+            if ($(this).val().length >= 6) {
+                hideError('password', 'err-password');
+            }
+            // Re-check confirm match as password changes
+            if ($('#confirm').val() !== '' && $('#confirm').val() === $(this).val()) {
+                hideError('confirm', 'err-confirm');
+            }
+        });
+ 
+        $('#confirm').on('input', function () {
+            if ($(this).val() === $('#password').val() && $(this).val() !== '') {
+                hideError('confirm', 'err-confirm');
+            }
+        });
+ 
+        /* ── Initialize jQuery UI Dialog ── */
+        $('#success-dialog').dialog({
+            autoOpen  : false,
+            modal     : true,
+            draggable : true,
+            resizable : true,
+            width     : 380,
+            minWidth  : 280,
+            minHeight : 240,
+            show      : { effect: 'scale', duration: 350 },
+            hide      : { effect: 'fade',  duration: 250 },
+            buttons   : {
+                'OK': function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+ 
+        /* ── Create Account button click handler ── */
+        $('#btn-create').on('click', function () {
+ 
+            var name     = $('#name').val().trim();
+            var email    = $('#email').val().trim();
+            var password = $('#password').val();
+            var confirm  = $('#confirm').val();
+            var namePattern = /^[a-zA-Z\s]+$/;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ 
+            var valid = true;
+ 
+            // Validate name (not empty and alphabets only)
+            if (name === '') {
+                showError('name', 'err-name');
+                valid = false;
+            } else if (!namePattern.test(name)) {
+                showError('name', 'err-name');
+                valid = false;
+            } else {
+                hideError('name', 'err-name');
+            }
+ 
+            // Validate email
+            if (!emailPattern.test(email)) {
+                showError('email', 'err-email');
+                valid = false;
+            } else {
+                hideError('email', 'err-email');
+            }
+ 
+            // Validate password
+            if (password.length < 6) {
+                showError('password', 'err-password');
+                valid = false;
+            } else {
+                hideError('password', 'err-password');
+            }
+ 
+            // Validate confirm password
+            if (confirm !== password || confirm === '') {
+                showError('confirm', 'err-confirm');
+                valid = false;
+            } else {
+                hideError('confirm', 'err-confirm');
+            }
+ 
+            // If all fields valid → open success dialog
+            if (valid) {
+                $('#success-dialog').dialog('open');
+            }
+        });
+ 
+    });
+</script>
+
+</body>
+</html>
